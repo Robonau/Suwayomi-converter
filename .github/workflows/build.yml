@@ -12,9 +12,9 @@ name: Build
 on:
   workflow_dispatch:
   push:
-    branches: ["Release"]
+    branches: ['Release']
     paths-ignore:
-      - "**/README.md"
+      - '**/README.md'
 
 defaults:
   run:

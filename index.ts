@@ -79,9 +79,7 @@ function format<T extends z.infer<typeof outputsSchema>>(
 ): sharp.Sharp | Response {
 	const optionsValid = getOptions(outValid, options);
 	if (optionsValid instanceof Response) return optionsValid;
-	return s[outValid](
-		optionsValid as NonNullable<Parameters<sharp.Sharp[T]>[0]>
-	);
+	return s.toFormat(outValid, optionsValid);
 }
 
 function resize(s: sharp.Sharp, options: unknown) {
