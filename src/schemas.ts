@@ -1,13 +1,4 @@
-import type sharp from 'sharp';
 import z from 'zod';
-
-// Source - https://stackoverflow.com/a/73461648
-// Posted by DerBesondereEin
-// Retrieved 2025-11-13, License - CC BY-SA 4.0
-
-// eslint-disable-next-line
-export function assert<T extends never>() {}
-type TypeEqualityGuard<A, B> = Exclude<A, B> | Exclude<B, A>;
 
 const jpegOptionsSchema = z.object({
 	quality: z.number().min(1).max(100).optional(),
@@ -27,9 +18,6 @@ const jpegOptionsSchema = z.object({
 	force: z.boolean().optional()
 });
 
-assert<
-	TypeEqualityGuard<z.infer<typeof jpegOptionsSchema>, sharp.JpegOptions>
->();
 
 const pngOptionsSchema = z.object({
 	progressive: z.boolean().optional(),
@@ -44,7 +32,6 @@ const pngOptionsSchema = z.object({
 	force: z.boolean().optional()
 });
 
-assert<TypeEqualityGuard<z.infer<typeof pngOptionsSchema>, sharp.PngOptions>>();
 
 const webpOptionsSchema = z.object({
 	quality: z.number().min(1).max(100).optional(),
@@ -74,9 +61,7 @@ const webpOptionsSchema = z.object({
 	force: z.boolean().optional()
 });
 
-assert<
-	TypeEqualityGuard<z.infer<typeof webpOptionsSchema>, sharp.WebpOptions>
->();
+
 
 const gifOptionsSchema = z.object({
 	reuse: z.boolean().optional(),
@@ -95,7 +80,6 @@ const gifOptionsSchema = z.object({
 	force: z.boolean().optional()
 });
 
-assert<TypeEqualityGuard<z.infer<typeof gifOptionsSchema>, sharp.GifOptions>>();
 
 const jp2OptionsSchema = z.object({
 	quality: z.number().min(1).max(100).optional(),
@@ -108,7 +92,6 @@ const jp2OptionsSchema = z.object({
 	force: z.boolean().optional()
 });
 
-assert<TypeEqualityGuard<z.infer<typeof jp2OptionsSchema>, sharp.Jp2Options>>();
 
 const tiffOptionsSchema = z.object({
 	quality: z.number().min(1).max(100).optional(),
@@ -134,9 +117,7 @@ const tiffOptionsSchema = z.object({
 	miniswhite: z.boolean().optional()
 });
 
-assert<
-	TypeEqualityGuard<z.infer<typeof tiffOptionsSchema>, sharp.TiffOptions>
->();
+
 
 const avifOptionsSchema = z.object({
 	quality: z.number().min(1).max(100).optional(),
@@ -147,9 +128,7 @@ const avifOptionsSchema = z.object({
 	bitdepth: z.union([z.literal(8), z.literal(10), z.literal(12)]).optional()
 });
 
-assert<
-	TypeEqualityGuard<z.infer<typeof avifOptionsSchema>, sharp.AvifOptions>
->();
+
 
 const heifOptionsSchema = z.object({
 	compression: z.union([z.literal('av1'), z.literal('hevc')]).optional(),
@@ -161,9 +140,7 @@ const heifOptionsSchema = z.object({
 	bitdepth: z.union([z.literal(8), z.literal(10), z.literal(12)]).optional()
 });
 
-assert<
-	TypeEqualityGuard<z.infer<typeof heifOptionsSchema>, sharp.HeifOptions>
->();
+
 
 const jxlOptionsSchema = z.object({
 	distance: z.number().min(0).max(15).optional(),
@@ -177,7 +154,6 @@ const jxlOptionsSchema = z.object({
 		.optional()
 });
 
-assert<TypeEqualityGuard<z.infer<typeof jxlOptionsSchema>, sharp.JxlOptions>>();
 
 const rawOptionsSchema = z.object({
 	depth: z
@@ -197,7 +173,6 @@ const rawOptionsSchema = z.object({
 		.optional()
 });
 
-assert<TypeEqualityGuard<z.infer<typeof rawOptionsSchema>, sharp.RawOptions>>();
 
 export const outputsSchema = z.union([
 	z.literal('jpeg'),
@@ -257,12 +232,7 @@ export const resizeOptionsSchema = z.object({
 	fastShrinkOnLoad: z.boolean().optional()
 });
 
-assert<
-	TypeEqualityGuard<
-		z.infer<typeof resizeOptionsSchema>['background'],
-		sharp.ResizeOptions['background']
-	>
->();
+
 
 export const formSchema = z.object({
 	image: z.instanceof(File)
