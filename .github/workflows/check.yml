@@ -11,11 +11,11 @@ name: check
 
 on:
   pull_request:
-    branches: ["main", "Release"]
+    branches: ['main', 'Release']
     paths-ignore:
-      - "**/README.md"
-      - ".github/workflows/**.yml"
-      - "**/default.conf"
+      - '**/README.md'
+      - '.github/workflows/**.yml'
+      - '**/default.conf'
 
 jobs:
   run-check:
